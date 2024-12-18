@@ -57,4 +57,3 @@ strategy:
 
 serviceAccount:
   create: false
-
