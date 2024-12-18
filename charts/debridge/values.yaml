@@ -1,0 +1,59 @@
+replicaCount: 1
+
+image:
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+command:
+  enabled: false
+
+configs:
+  enabled: false
+
+secrets:
+  enabled: false
+
+#imagePullSecrets:
+#  - name: regcred
+
+initContainers: {}
+
+sidecar:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+metrics:
+  prometheusRule:
+    additionalLabels: {}
+    enabled: false
+    namespace: ""
+  serviceMonitor:
+    additionalLabels: {}
+    enabled: false
+    interval: 15s
+    path: /metrics
+    scrapeTimeout: 10s
+
+
+livenessProbe: {}
+readinessProbe: {}
+startupProbe: {}
+
+service:
+  enabled: true
+
+ingress:
+  enabled: false
+
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 25%
+    maxSurge: 25%
+
+serviceAccount:
+  create: false

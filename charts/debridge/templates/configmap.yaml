@@ -1,0 +1,11 @@
+{{- if .Values.extraConfigMapEntries }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "service.fullname" . }}
+data:
+{{- range $key, $value := .Values.extraConfigMapEntries }}
+  {{ $key }}: |-
+{{ $value | indent 4 }}
+{{- end }}
+{{- end }}

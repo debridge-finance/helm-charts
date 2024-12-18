@@ -1,0 +1,40 @@
+{{- if and .Values.service.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "service.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+  {{- range $key, $value := .Values.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  labels:
+    app: {{ include "service.fullname" . }}
+    release: {{ .Release.Name }}
+spec:
+  type: {{ .Values.service.type | default "ClusterIP" }}
+  {{- if (or (eq .Values.service.type "LoadBalancer") (eq .Values.service.type "NodePort")) }}
+  {{- if hasKey .Values.service "externalTrafficPolicy" -}}
+  externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if eq .Values.service.type "LoadBalancer" }}
+  loadBalancerIP: {{ default "" .Values.service.loadBalancerIP | quote }}
+  {{- end }}
+  ports:
+  {{- range $key, $value := .Values.containerPorts }}
+  - name: {{ $key }}
+    port: {{ $value }}
+    targetPort: {{ $value }}
+  {{- end }}
+  {{- if .Values.sidecar.containerPorts }}
+    {{- range $key, $value := .Values.sidecar.containerPorts }}
+  - name: {{ $key }}
+    port: {{ $value }}
+    targetPort: {{ $value }}
+    {{- end }}
+  {{- end }}
+  selector:
+    app: {{ include "service.fullname" . }}
+    release: {{ .Release.Name | quote }}
+{{- end -}}
