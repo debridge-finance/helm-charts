@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  debridge:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-12-18T12:12:09.948318499Z"
+    description: A Debridge Helm chart for Kubernetes
+    digest: 3c6abe98c74560d530ceceff2066f7f2991ff73bf220d44da8594a40fcda49a7
+    name: debridge
+    type: application
+    urls:
+    - https://github.com/debridge-finance/helm-charts/releases/download/debridge-1.0.1/debridge-1.0.1.tgz
+    version: 1.0.1
+generated: "2024-12-18T12:12:09.94832426Z"
