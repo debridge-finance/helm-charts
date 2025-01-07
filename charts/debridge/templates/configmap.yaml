@@ -6,6 +6,6 @@ metadata:
 data:
 {{- range $key, $value := .Values.extraConfigMapEntries }}
   {{ $key }}: |-
-{{ $value | indent 4 }}
+{{ $.Files.Get $value | indent 4}}
 {{- end }}
 {{- end }}
