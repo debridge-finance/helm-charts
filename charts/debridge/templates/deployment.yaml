@@ -27,6 +27,7 @@ spec:
         app: {{ include "service.fullname" . }}
         release: {{ .Release.Name }}
       annotations:
+        configmap-hash: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         {{- if .Values.podAnnotations }}
         {{ toYaml .Values.podAnnotations | indent 8 }}
         {{- end }}
