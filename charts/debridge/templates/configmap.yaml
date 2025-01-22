@@ -11,7 +11,7 @@ data:
 {{- if .Values.extraConfigMapEntriesFiles }}
 {{- range $key, $value := .Values.extraConfigMapEntriesFiles }}
   {{ $key }}: |-
-  {{- $.Files.Get $value  | nindent 4 -}}
+  {{ printf "%s\n" (join "\n" (splitlines ($.Files.Get $value))) | nindent 4 }}
 {{- end }}
 {{- end }}
 {{- end }}
