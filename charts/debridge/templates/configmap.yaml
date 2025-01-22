@@ -11,12 +11,8 @@ data:
 {{- if .Values.extraConfigMapEntriesFiles }}
 {{- range $key, $value := .Values.extraConfigMapEntriesFiles }}
   {{ $key }}: |-
-  {{ $fileContent := readFile $value | indent 4 }}
-    {{ $fileContent | indent 4 }}
   {{ - $content := ($.Files.Get $value) }}
   {{ printf "%s\n" $content | nindent 4 }}
-  {{ - $content2 := readFile $value }}
-  {{ printf "%s\n" $content2 | nindent 4 }}
 {{- end }}
 {{- end }}
 {{- end }}
