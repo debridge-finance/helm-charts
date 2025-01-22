@@ -1,4 +1,4 @@
-{{- if .Values.extraConfigMapEntries }}
+{{- if or (and .Values.extraConfigMapEntries) (and .Values.extraConfigMapEntriesFiles) }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,5 +7,11 @@ data:
 {{- range $key, $value := .Values.extraConfigMapEntries }}
   {{ $key }}: |-
 {{ $value | indent 4 }}
+{{- end }}
+{{- if .Values.extraConfigMapEntriesFiles }}
+{{- range $key, $value := .Values.extraConfigMapEntriesFiles }}
+  {{ $key }}: |-
+  {{- $.Files.Get $value  | nindent 4 -}}
+{{- end }}
 {{- end }}
 {{- end }}
