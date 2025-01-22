@@ -3,6 +3,16 @@ entries:
   debridge:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2025-01-22T14:15:16.950862936Z"
+    description: A Debridge Helm chart for Kubernetes
+    digest: e0eeab498abf6506c55daabc861bd50bd43cebd51ccb0dd0c48c2335fd2f92bc
+    name: debridge
+    type: application
+    urls:
+    - debridge-1.2.3-rc5.tgz
+    version: 1.2.3-rc5
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2025-01-22T13:17:34.780643465Z"
     description: A Debridge Helm chart for Kubernetes
     digest: 8fcd982dccb2ced2ae57261edb6f665e9ea55f7313dc01e5de121a153f9b831d
@@ -91,4 +101,4 @@ entries:
     urls:
     - debridge-1.0.3.tgz
     version: 1.0.3
-generated: "2025-01-22T13:17:34.780727744Z"
+generated: "2025-01-22T14:15:16.950935963Z"
