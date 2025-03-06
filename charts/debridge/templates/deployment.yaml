@@ -75,9 +75,17 @@ spec:
             - configMapRef:
                 name: {{ include "service.fullname" . }}
           {{- end }}
+          {{- if .Values.externalConfigs.enabled }}
+            - configMapRef:
+                name: {{ .Values.externalConfigs.name }}
+          {{- end }}
           {{- if .Values.externalSecret }}
             - secretRef:
                 name: {{ include "service.fullname" . }}
+          {{- end }}
+          {{- if .Values.subExternalSecret.enabled }}
+            - secretRef:
+                name: {{ .Values.subExternalSecret.name }}
           {{- end }}
           {{- if .Values.livenessProbe }}
           livenessProbe:

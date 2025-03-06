@@ -57,3 +57,9 @@ strategy:
 
 serviceAccount:
   create: false
+
+externalConfigs:
+  enabled: false
+
+subExternalSecret:
+  enabled: false
